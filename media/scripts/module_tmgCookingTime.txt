@@ -1,0 +1,138 @@
+module tmgCookingTime
+{
+	imports
+	{
+		Base,
+	}
+	recipe Create Pancake Dough
+	{
+		Egg=2,
+		Flour,
+		Butter,
+		keep Bowl,
+		Result 		: PancakeDough=2,
+		Time 		: 30,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking10,
+	}
+	recipe Create Bacon Strips
+	{
+		keep KitchenKnife/HuntingKnife/ButterKnife/MeatCleaver/FlintKnife/Machete,
+		PorkChop,
+		Result 		: Bacon=5,
+		Time 		: 20,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	item SweetCerealBowl
+	{
+		HungerChange 		= -15,
+		Weight 		= 0.81,
+		AlwaysWelcomeGift 		= true,
+		Type 		= Food,
+		DisplayName 		= Sweetened Cereal,
+		Icon 		= Oatmeal,
+		Carbohydrates 		= 171.5,
+		Proteins 		= 6.5,
+		Lipids 		= 3.25,
+		Calories 		= 682,
+		StaticModel 		= Bowl,
+		EatType 		= 2hand,
+		DaysTotallyRotten 		= 2,
+		ReplaceOnUse 		= Bowl,
+		DaysFresh 		= 1,
+		ThirstChange 		= -20,
+		UnhappyChange 		= -8,
+	}
+	recipe Sweeten Cereal
+	{
+		CerealBowl,
+		Sugar;5,
+		Result 		: SweetCerealBowl,
+		Time 		: 40,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	recipe Create Waffle Dough
+	{
+		Egg=2,
+		Flour,
+		Butter,
+		keep Bowl,
+		Result 		: WaffleDough=4,
+		Time 		: 30,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking10,
+	}
+	item PancakeDough
+	{
+		Icon 		= PancakeRaw,
+		HungerChange 		= -10,
+		DisplayName 		= Pancake Dough,
+		Categories 		= Food,
+		DaysFresh 		= 1,
+		DaysTotallyRotten 		= 3,
+		DangerousUncooked 		= true,
+		GoodHot 		= true,
+		Lipids 		= 1,
+		Calories 		= 210,
+		WorldStaticModel 		= Pancakes,
+		IsCookable 		= true,
+		ReplaceOnCooked 		= Pancakes,
+		DisplayCategory 		= Food,
+		Weight 		= 0.1,
+		Type 		= Food,
+		MinutesToBurn 		= 30,
+		MinutesToCook 		= 15,
+	}
+	item WaffleDough
+	{
+		Icon 		= WaffleRaw,
+		HungerChange 		= -10,
+		DisplayName 		= Waffle Dough,
+		Categories 		= Food,
+		DaysFresh 		= 1,
+		DaysTotallyRotten 		= 3,
+		DangerousUncooked 		= true,
+		GoodHot 		= true,
+		Lipids 		= 1,
+		Calories 		= 210,
+		WorldStaticModel 		= Waffles,
+		IsCookable 		= true,
+		ReplaceOnCooked 		= Waffles,
+		DisplayCategory 		= Food,
+		Weight 		= 0.1,
+		Type 		= Food,
+		MinutesToCook 		= 15,
+		MinutesToBurn 		= 30,
+	}
+	item TMGCereal
+	{
+		HungerChange 		= -25,
+		Weight 		= 1,
+		AlwaysWelcomeGift 		= true,
+		Type 		= Food,
+		DisplayName 		= Bowl of Master O' Generals,
+		Icon 		= TMGCereal,
+		Carbohydrates 		= 215,
+		Proteins 		= 11.2,
+		Lipids 		= 4.51,
+		Calories 		= 712,
+		StaticModel 		= Bowl,
+		EatType 		= 2hand,
+		DaysTotallyRotten 		= 2,
+		ReplaceOnUse 		= Bowl,
+		DaysFresh 		= 1,
+		ThirstChange 		= -20,
+		UnhappyChange 		= -14,
+	}
+	recipe Make Bowl of Master O' Generals
+	{
+		SweetCerealBowl,
+		Chocolate;5,
+		Result 		: TMGCereal,
+		Time 		: 50,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+}
