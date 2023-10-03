@@ -1,0 +1,16 @@
+version=1
+id=2601573669
+title=TMG's Cooking Time
+description=This is a WIP mod that adds in cooking items/tweaks/changes that feel "Vanilla+" in nature. Food nutrition values likely need balanced!
+description=
+description=Added Foods:
+description=Sweetened Cereal Bowl (Bowl of Cereal; Sugar)
+description=Bowl of Master O' Generals (Sweetened Cereal Bowl; Chocolate)
+description=Chocolate Milk
+description=Condensed Chocolate Milk
+description=
+description=Added Recipes:
+description=Make Chocolate Milk (Chocolate; Milk; Sugar)
+description=Make Condensed Chocolate Milk (Condensed Milk; Chocolate; Sugar)
+tags=Build 41;Food;Items;Realistic
+visibility=public

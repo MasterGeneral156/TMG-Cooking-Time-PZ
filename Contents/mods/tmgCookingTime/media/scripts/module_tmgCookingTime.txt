@@ -1,0 +1,192 @@
+module tmgCookingTime
+{
+	imports
+	{
+		Base,
+	}
+	item SweetCerealBowl
+	{
+		HungerChange 		= -15,
+		Weight 		= 0.81,
+		AlwaysWelcomeGift 		= true,
+		Type 		= Food,
+		DisplayName 		= Sweetened Cereal,
+		Icon 		= Oatmeal,
+		Carbohydrates 		= 171.5,
+		Proteins 		= 6.5,
+		Lipids 		= 3.25,
+		Calories 		= 682,
+		StaticModel 		= Bowl,
+		EatType 		= 2hand,
+		DaysTotallyRotten 		= 2,
+		ReplaceOnUse 		= Bowl,
+		DaysFresh 		= 1,
+		ThirstChange 		= -20,
+		UnhappyChange 		= -8,
+		StaticModel = Bowl,
+		WorldStaticModel = BowlRamen_Ground,
+	}
+	
+	item TMGCereal
+	{
+		HungerChange 		= -25,
+		Weight 		= 1,
+		AlwaysWelcomeGift 		= true,
+		Type 		= Food,
+		DisplayName 		= Bowl of Master O' Generals,
+		Icon 		= TMGCereal,
+		Carbohydrates 		= 215,
+		Proteins 		= 11.2,
+		Lipids 		= 4.51,
+		Calories 		= 712,
+		StaticModel 		= Bowl,
+		EatType 		= 2hand,
+		DaysTotallyRotten 		= 2,
+		ReplaceOnUse 		= Bowl,
+		DaysFresh 		= 1,
+		ThirstChange 		= -20,
+		UnhappyChange 		= -14,
+		StaticModel = Bowl,
+		WorldStaticModel = BowlRamen_Ground,
+	}
+	
+	item ChocoMilk
+	{
+		DisplayName = Chocolate Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 1.0,
+		Icon = Milk,
+		CantBeFrozen = TRUE,
+		EvolvedRecipe = HotDrink:2;HotDrinkRed:2;HotDrinkWhite:2;HotDrinkSpiffo:2;HotDrinkTea:2;Beverage:2;Beverage2:2;Oatmeal:2;Soup:5;Stew:5,
+		FoodType = Milk,
+		Packaged = TRUE,
+		DaysFresh = 4,
+		DaysTotallyRotten = 7,
+		HungerChange = -10,
+		ThirstChange = -100,
+		UnhappyChange 		= -25,
+		Calories = 511,
+		Carbohydrates = 13,
+		Lipids = 2.5,
+		Proteins = 8,
+		CustomContextMenu = Drink,
+		CustomEatSound = DrinkingFromCarton,
+		StaticModel = MilkCarton,
+		WorldStaticModel = Milk_Ground,
+		Tags = Milk,
+	}	
+	
+	item CannedChocoMilk
+	{
+		DisplayName = Canned Evaporated Chocolate Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 0.8,
+		Icon = CannedCondensedMilk,
+		CantBeFrozen = TRUE,
+		Packaged = TRUE,
+		Calories = 2135,
+		Carbohydrates = 23.6,
+		Lipids = 23.6,
+		Proteins = 23.6,
+		StaticModel = CanClosedMilk,
+		WorldStaticModel = CanClosedMilk,
+		Tags =HasMetal,
+		UnhappyChange 		= -25,
+		CannedFood = TRUE,
+	}
+	
+	item CannedChocoMilkOpen
+	{
+		DisplayName = Opened Can Evaporated Chocolate Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 0.8,
+		Icon = CannedCondensedMilk_Open,
+		CantBeFrozen = TRUE,
+		EvolvedRecipe = FruitSalad:2;Pancakes:2;Waffles:2;HotDrink:2;HotDrinkRed:2;HotDrinkWhite:2;HotDrinkSpiffo:2;HotDrinkTea:2;Beverage:5;Beverage2:5;Oatmeal:2;PieSweet:5;Cake:5,
+		FoodType = Milk,
+		Packaged = TRUE,
+		DaysFresh = 4,
+		DaysTotallyRotten = 7,
+		HungerChange = -10,
+		ThirstChange = -10,
+		Calories = 2135,
+		Carbohydrates = 23.6,
+		Lipids = 23.6,
+		Proteins = 23.6,
+		CustomContextMenu = Drink,
+		StaticModel = CanOpenMilk,
+		WorldStaticModel = CanOpenMilk,
+		CustomEatSound = DrinkingFromCan,
+		Tags = Milk;HasMetal,
+		CannedFood = TRUE,
+		EatType = can,
+		ReplaceOnUse = TinCanEmpty,
+		UnhappyChange 		= -25,
+		EvolvedRecipeName = Evaporated Milk,
+	}
+	
+	recipe Create Bacon Strips
+	{
+		keep KitchenKnife/HuntingKnife/ButterKnife/MeatCleaver/FlintKnife/Machete,
+		PorkChop,
+		Result 		: Bacon=5,
+		Time 		: 20,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	recipe Sweeten Cereal
+	{
+		CerealBowl,
+		Sugar;5,
+		Result 		: SweetCerealBowl,
+		Time 		: 40,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	recipe Make Bowl of Master O' Generals
+	{
+		SweetCerealBowl,
+		Chocolate;5,
+		Result 		: TMGCereal,
+		Time 		: 50,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	
+	recipe Open Condensed Chocolate Milk
+	{
+	   CannedChocoMilk,
+	   keep [Recipe.GetItemTypes.CanOpener],
+
+	   Result:CannedChocoMilkOpen,
+	   Time:80.0,
+	   Category:Cooking,
+	   OnGiveXP:Recipe.OnGiveXP.None,
+       Sound:OpenCannedFood,
+	}
+	
+	recipe Make Chocolate Milk
+	{
+		Milk,
+		Chocolate;10,
+		Sugar;5,
+		Result 		: ChocoMilk,
+		Time 		: 120,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	
+	recipe Make Condensed Chocolate Milk
+	{
+		CannedMilk,
+		Chocolate;10,
+		Sugar;5,
+		Result 		: CannedChocoMilk,
+		Time 		: 120,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+}
