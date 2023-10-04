@@ -128,6 +128,84 @@ module tmgCookingTime
 		EvolvedRecipeName = Evaporated Milk,
 	}
 	
+	item StrawberryMilk
+	{
+		DisplayName = Strawberry Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 1.0,
+		Icon = Milk,
+		CantBeFrozen = TRUE,
+		EvolvedRecipe = HotDrink:2;HotDrinkRed:2;HotDrinkWhite:2;HotDrinkSpiffo:2;HotDrinkTea:2;Beverage:2;Beverage2:2;Oatmeal:2;Soup:5;Stew:5,
+		FoodType = Milk,
+		Packaged = TRUE,
+		DaysFresh = 4,
+		DaysTotallyRotten = 7,
+		HungerChange = -10,
+		ThirstChange = -100,
+		UnhappyChange 		= -25,
+		Calories = 511,
+		Carbohydrates = 13,
+		Lipids = 2.5,
+		Proteins = 8,
+		CustomContextMenu = Drink,
+		CustomEatSound = DrinkingFromCarton,
+		StaticModel = MilkCarton,
+		WorldStaticModel = Milk_Ground,
+		Tags = Milk,
+	}	
+	
+	item CannedStrawberryMilk
+	{
+		DisplayName = Canned Evaporated Strawberry Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 0.8,
+		Icon = CannedCondensedMilk,
+		CantBeFrozen = TRUE,
+		Packaged = TRUE,
+		Calories = 2135,
+		Carbohydrates = 23.6,
+		Lipids = 23.6,
+		Proteins = 23.6,
+		StaticModel = CanClosedMilk,
+		WorldStaticModel = CanClosedMilk,
+		Tags =HasMetal,
+		UnhappyChange 		= -25,
+		CannedFood = TRUE,
+	}
+	
+	item CannedStrawberryMilkOpen
+	{
+		DisplayName = Opened Can Evaporated Strawberry Milk,
+		DisplayCategory = Food,
+		Type = Food,
+		Weight = 0.8,
+		Icon = CannedCondensedMilk_Open,
+		CantBeFrozen = TRUE,
+		EvolvedRecipe = FruitSalad:2;Pancakes:2;Waffles:2;HotDrink:2;HotDrinkRed:2;HotDrinkWhite:2;HotDrinkSpiffo:2;HotDrinkTea:2;Beverage:5;Beverage2:5;Oatmeal:2;PieSweet:5;Cake:5,
+		FoodType = Milk,
+		Packaged = TRUE,
+		DaysFresh = 4,
+		DaysTotallyRotten = 7,
+		HungerChange = -10,
+		ThirstChange = -10,
+		Calories = 2135,
+		Carbohydrates = 23.6,
+		Lipids = 23.6,
+		Proteins = 23.6,
+		CustomContextMenu = Drink,
+		StaticModel = CanOpenMilk,
+		WorldStaticModel = CanOpenMilk,
+		CustomEatSound = DrinkingFromCan,
+		Tags = Milk;HasMetal,
+		CannedFood = TRUE,
+		EatType = can,
+		ReplaceOnUse = TinCanEmpty,
+		UnhappyChange 		= -25,
+		EvolvedRecipeName = Evaporated Milk,
+	}
+	
 	recipe Create Bacon Strips
 	{
 		keep KitchenKnife/HuntingKnife/ButterKnife/MeatCleaver/FlintKnife/Machete,
@@ -171,8 +249,8 @@ module tmgCookingTime
 	recipe Make Chocolate Milk
 	{
 		Milk,
-		Chocolate;10,
-		Sugar;5,
+		Chocolate;5,
+		Sugar;3,
 		Result 		: ChocoMilk,
 		Time 		: 120,
 		Category 		: Cooking,
@@ -182,11 +260,45 @@ module tmgCookingTime
 	recipe Make Condensed Chocolate Milk
 	{
 		CannedMilk,
-		Chocolate;10,
-		Sugar;5,
+		Chocolate;5,
+		Sugar;3,
 		Result 		: CannedChocoMilk,
 		Time 		: 120,
 		Category 		: Cooking,
 		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	
+	recipe Make Strawberry Milk
+	{
+		Milk,
+		Strewberrie;5,
+		Sugar;3,
+		Result 		: StrawberryMilk,
+		Time 		: 120,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	
+	recipe Make Condensed Strawberry Milk
+	{
+		CannedMilk,
+		Strewberrie;5,
+		Sugar;3,
+		Result 		: CannedStrawberryMilk,
+		Time 		: 120,
+		Category 		: Cooking,
+		OnGiveXP 		: Recipe.OnGiveXP.Cooking3,
+	}
+	
+	recipe Open Condensed Strawberry Milk
+	{
+	   CannedStrawberryMilk,
+	   keep [Recipe.GetItemTypes.CanOpener],
+
+	   Result:CannedStrawberryMilkOpen,
+	   Time:80.0,
+	   Category:Cooking,
+	   OnGiveXP:Recipe.OnGiveXP.None,
+       Sound:OpenCannedFood,
 	}
 }
